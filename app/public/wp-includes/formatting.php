@@ -5418,6 +5418,11 @@ function normalize_whitespace( $str ) {
  * @return string The processed string.
  */
 function wp_strip_all_tags( $string, $remove_breaks = false ) {
+	// s'assurer que string n'est pas null avant d'appeler preg_replace
+	/*if(!is_null($string)) {
+		$string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
+	}*/
+	// ancien code 
 	$string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
 	$string = strip_tags( $string );
 
