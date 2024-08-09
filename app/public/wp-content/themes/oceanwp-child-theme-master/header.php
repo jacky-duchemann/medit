@@ -50,6 +50,7 @@ $description=get_field('description', 161);
 $lieu=get_field('lieu', 161);
 $date=get_field('date', 161);
 $lien=get_field('lien_google_maps', 161);
+/*echo var_dump($lien);*/ /* détail de la variable lien */
 ?>
 
 <div class="popup-overlay">
@@ -63,7 +64,7 @@ $lien=get_field('lien_google_maps', 161);
 			<div class="popup-address">
 				<p><b>Le lieu</b></p>
 				<?php echo $lieu; ?>
-				<a class="popup-link" href="<?php echo $lien; ?>" target="_blank">Voir sur Google Maps</a>
+				<a class="popup-link" href="<?php echo esc_html($lien['url']); ?>" target="_blank">Voir sur Google Maps</a> <!-- cibler uniquement l'url du tableau associatif -->
 			</div>
 			<div class="popup-address">
 				<p><b>La date</b></p>
@@ -71,18 +72,22 @@ $lien=get_field('lien_google_maps', 161);
 			</div>
 		</div>
 		<p class="popup-informations">Vous souhaitez plus d'informations concernant cet événement ?</p>
+		
 		<?php
 		// On insère le formulaire de demandes de renseignements
-		do_shortcode('[contact-form-7 id="910" title="Formulaire salon New York"]');
+		echo do_shortcode('[contact-form-7 id="910" title="Formulaire salon New York"]');
 		?>
+		
 	</div>
 </div>
 
 <!-- Code pour fermer la popup -->
-
+ 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"> // chargement et inclusion de la bibliothèque Jquery</script>
 <script>
+
 $('.popup-close').click(function(){
-	$(this).parent().hide();
+	$(this).closest('.popup-overlay').hide(); // ciblage de la classse "popup-overlay" pour masquer toute la popup
 })
 </script>
 

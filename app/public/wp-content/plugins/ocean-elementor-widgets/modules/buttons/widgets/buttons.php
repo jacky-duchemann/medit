@@ -4,14 +4,14 @@ namespace owpElementor\Modules\Buttons\Widgets;
 // Elementor Classes
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Widget_Base;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class Buttons extends Widget_Base {
 
@@ -24,25 +24,31 @@ class Buttons extends Widget_Base {
 	}
 
 	public function get_icon() {
-		// Upload "eicons.ttf" font via this site: http://bluejamesbond.github.io/CharacterMap/
 		return 'oew-icon eicon-button';
 	}
 
 	public function get_categories() {
-		return [ 'oceanwp-elements' ];
+		return array( 'oceanwp-elements' );
+	}
+
+	public function get_keywords() {
+		return array(
+			'button',
+			'owp',
+		);
 	}
 
 	public function get_style_depends() {
-		return [ 'oew-buttons' ];
+		return array( 'oew-buttons' );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_buttons',
-			[
-				'label' 		=> __( 'Buttons', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Buttons', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$repeater = new Repeater();
@@ -51,235 +57,235 @@ class Buttons extends Widget_Base {
 
 		$repeater->start_controls_tab(
 			'tab_button',
-			[
-				'label' 		=> __( 'Button', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Button', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$repeater->add_control(
 			'text',
-			[
-				'label' 		=> __( 'Text', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'default' 		=> __( 'Click me', 'ocean-elementor-widgets' ),
-				'placeholder' 	=> __( 'Click me', 'ocean-elementor-widgets' ),
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Text', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Click me', 'ocean-elementor-widgets' ),
+				'placeholder' => __( 'Click me', 'ocean-elementor-widgets' ),
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$repeater->add_control(
 			'link',
-			[
-				'label' 		=> __( 'Link', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::URL,
-				'placeholder' 	=> __( 'https://your-link.com', 'ocean-elementor-widgets' ),
-				'default' 		=> [
+			array(
+				'label'       => __( 'Link', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::URL,
+				'placeholder' => __( 'https://your-link.com', 'ocean-elementor-widgets' ),
+				'default'     => array(
 					'url' => '#',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'icon',
-			[
-				'label' 		=> __( 'Icon', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::ICONS,
-				'label_block' 	=> true,
-				'default'		=> [
+			array(
+				'label'       => __( 'Icon', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::ICONS,
+				'label_block' => true,
+				'default'     => array(
 					'value'   => '',
 					'library' => 'solid',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'icon_align',
-			[
-				'label' 		=> __( 'Icon Position', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SELECT,
-				'default' 		=> 'left',
-				'options' 		=> [
-					'left' => __( 'Before', 'ocean-elementor-widgets' ),
+			array(
+				'label'     => __( 'Icon Position', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'left',
+				'options'   => array(
+					'left'  => __( 'Before', 'ocean-elementor-widgets' ),
 					'right' => __( 'After', 'ocean-elementor-widgets' ),
-				],
-				'condition' 	=> [
+				),
+				'condition' => array(
 					'icon!' => '',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'icon_indent',
-			[
-				'label' 		=> __( 'Icon Spacing', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SLIDER,
-				'range' 		=> [
-					'px' => [
+			array(
+				'label'     => __( 'Icon Spacing', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
 						'max' => 50,
-					],
-				],
-				'condition' 	=> [
+					),
+				),
+				'condition' => array(
 					'icon!' => '',
-				],
-				'selectors' 	=> [
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'button_id',
-			[
-				'label' 		=> __( 'CSS ID', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'default' 		=> '',
-				'label_block' 	=> false,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'CSS ID', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'label_block' => false,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$repeater->add_control(
 			'button_classes',
-			[
-				'label' 		=> __( 'CSS Classes', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'default' 		=> '',
-				'label_block' 	=> false,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'CSS Classes', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'label_block' => false,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$repeater->end_controls_tab();
 
 		$repeater->start_controls_tab(
 			'tab_style',
-			[
-				'label' 		=> __( 'Style', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Style', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$repeater->add_responsive_control(
 			'min_width',
-			[
-				'label' 		=> __( 'Min Width', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SLIDER,
-				'range' 		=> [
-					'px' => [
-						'min' 	=> 10,
-						'max' 	=> 1000,
-						'step'	=> 1,
-					],
-				],
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Min Width', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min'  => 10,
+						'max'  => 1000,
+						'step' => 1,
+					),
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a' => 'min-width: {{SIZE}}px;',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'background_color',
-			[
-				'label' 		=> __( 'Normal: Background Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'scheme' 		=> [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
-				],
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Normal: Background Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'button_text_color',
-			[
-				'label' 		=> __( 'Normal: Text Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'default' 		=> '',
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Normal: Text Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a' => 'color: {{VALUE}};',
-				],
-			]
+					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} svg' => 'fill: {{VALUE}};',
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'button_background_hover_color',
-			[
-				'label' 		=> __( 'Hover: Background Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Hover: Background Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a:hover' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'hover_color',
-			[
-				'label' 		=> __( 'Hover: Text Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Hover: Text Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a:hover' => 'color: {{VALUE}};',
-				],
-			]
+					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a:hover i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a:hover svg' => 'fill: {{VALUE}};',
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'button_hover_border_color',
-			[
-				'label' 		=> __( 'Hover: Border Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'condition' 	=> [
+			array(
+				'label'     => __( 'Hover: Border Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
 					'border_border!' => '',
-				],
-				'selectors' 	=> [
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a:hover' => 'border-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_control(
 			'hover_animation',
-			[
-				'label' 		=> __( 'Hover Animation', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::HOVER_ANIMATION,
-			]
+			array(
+				'label' => __( 'Hover Animation', 'ocean-elementor-widgets' ),
+				'type'  => Controls_Manager::HOVER_ANIMATION,
+			)
 		);
 
 		$repeater->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name' 			=> 'border',
-				'placeholder' 	=> '1px',
-				'default' 		=> '1px',
-				'selector' 		=> '{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a',
-			]
+			array(
+				'name'        => 'border',
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a',
+			)
 		);
 
 		$repeater->add_control(
 			'border_radius',
-			[
-				'label' 		=> __( 'Border Radius', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Border Radius', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->add_responsive_control(
 			'text_padding',
-			[
-				'label' 		=> __( 'Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-buttons li{{CURRENT_ITEM}} a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$repeater->end_controls_tab();
@@ -288,206 +294,204 @@ class Buttons extends Widget_Base {
 
 		$this->add_control(
 			'buttons',
-			[
-				'label' 		=> __( 'buttons', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::REPEATER,
-				'default' 	=> [
-					[
-						'text' 	=> __( 'Button #1', 'ocean-elementor-widgets' ),
-						'link' 	=> [
+			array(
+				'label'       => __( 'buttons', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::REPEATER,
+				'default'     => array(
+					array(
+						'text' => __( 'Button #1', 'ocean-elementor-widgets' ),
+						'link' => array(
 							'url' => '#',
-						],
-					],
-					[
-						'text' 	=> __( 'Button #2', 'ocean-elementor-widgets' ),
-						'link' 	=> [
+						),
+					),
+					array(
+						'text' => __( 'Button #2', 'ocean-elementor-widgets' ),
+						'link' => array(
 							'url' => '#',
-						],
-					],
-				],
-				'fields' 		=> array_values( $repeater->get_controls() ),
-				'title_field' 	=> '{{{ text }}}',
-			]
+						),
+					),
+				),
+				'fields'      => $repeater->get_controls(),
+				'title_field' => '{{{ text }}}',
+			)
 		);
 
 		$this->add_responsive_control(
 			'align',
-			[
-				'label' 		=> __( 'Alignment', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::CHOOSE,
-				'options' 		=> [
-					'left'    => [
+			array(
+				'label'     => __( 'Alignment', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
 						'title' => __( 'Left', 'ocean-elementor-widgets' ),
-						'icon' 	=> 'fa fa-align-left',
-					],
-					'center' => [
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
 						'title' => __( 'Center', 'ocean-elementor-widgets' ),
-						'icon' 	=> 'fa fa-align-center',
-					],
-					'right' => [
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
 						'title' => __( 'Right', 'ocean-elementor-widgets' ),
-						'icon' 	=> 'fa fa-align-right',
-					],
-				],
-				'default' 		=> '',
-				'selectors' 	=> [
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons' => 'text-align: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_responsive_control(
 			'icon_size',
-			[
-				'label' => __( 'Icon Size', 'ocean-elementor-widgets' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
+			array(
+				'label'     => __( 'Icon Size', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
 						'min' => 6,
 						'max' => 300,
-					],
-				],
-				'selectors' => [
+					),
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons .oew-button-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_style',
-			[
-				'label' 		=> __( 'Buttons', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Buttons', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
-
 
 		$this->add_responsive_control(
 			'space',
-			[
-				'label' 		=> __( 'Space', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SLIDER,
-				'default' 		=> [
+			array(
+				'label'     => __( 'Space', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
 					'size' => 12,
-				],
-				'range' 		=> [
-					'px' => [
-						'max' 	=> 100,
-						'step'	=> 1,
-					],
-				],
-				'selectors' 	=> [
-					'{{WRAPPER}} .oew-buttons li' => 'margin-left: {{SIZE}}{{UNIT}};',
+				),
+				'range'     => array(
+					'px' => array(
+						'max'  => 100,
+						'step' => 1,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .oew-buttons li'      => 'margin-left: {{SIZE}}{{UNIT}};',
 					'.rtl {{WRAPPER}} .oew-buttons li' => 'margin-right: {{SIZE}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_responsive_control(
 			'buttons_min_width',
-			[
-				'label' 		=> __( 'Min Width', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SLIDER,
-				'range' 		=> [
-					'px' => [
-						'min' 	=> 10,
-						'max' 	=> 1000,
-						'step'	=> 1,
-					],
-				],
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Min Width', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min'  => 10,
+						'max'  => 1000,
+						'step' => 1,
+					),
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li a' => 'min-width: {{SIZE}}px;',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'buttons_typography',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_4,
-				'selector' 		=> '{{WRAPPER}} .oew-buttons li a',
-			]
+			array(
+				'name'     => 'buttons_typography',
+				'selector' => '{{WRAPPER}} .oew-buttons li a',
+			)
 		);
 
 		$this->start_controls_tabs( 'tabs_buttons_style' );
 
 		$this->start_controls_tab(
 			'tab_buttons_normal',
-			[
-				'label' 		=> __( 'Normal', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Normal', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$this->add_control(
 			'buttons_background_color',
-			[
-				'label' 		=> __( 'Background Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'scheme' 		=> [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
-				],
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li a' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'buttons_text_color',
-			[
-				'label' 		=> __( 'Text Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'default' 		=> '',
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Text Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li a' => 'color: {{VALUE}};',
-				],
-			]
+					'{{WRAPPER}} .oew-buttons li a i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .oew-buttons li a svg' => 'fill: {{VALUE}};',
+				),
+			)
 		);
 
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
 			'tab_buttons_hover',
-			[
-				'label' 		=> __( 'Hover', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Hover', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$this->add_control(
 			'buttons_background_hover_color',
-			[
-				'label' 		=> __( 'Background Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li a:hover' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'buttons_hover_color',
-			[
-				'label' 		=> __( 'Text Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Text Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li a:hover' => 'color: {{VALUE}};',
-				],
-			]
+					'{{WRAPPER}} .oew-buttons li a:hover i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .oew-buttons li a:hover svg' => 'fill: {{VALUE}};',
+				),
+			)
 		);
 
 		$this->add_control(
 			'buttons_hover_border_color',
-			[
-				'label' 		=> __( 'Border Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Border Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-buttons li a:hover' => 'border-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_tab();
@@ -496,64 +500,63 @@ class Buttons extends Widget_Base {
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name' 			=> 'buttons_border',
-				'placeholder' 	=> '1px',
-				'default' 		=> '1px',
-				'selector' 		=> '{{WRAPPER}} .oew-buttons li a',
-				'separator' 	=> 'before',
-			]
+			array(
+				'name'        => 'buttons_border',
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .oew-buttons li a',
+				'separator'   => 'before',
+			)
 		);
 
 		$this->add_control(
 			'buttons_border_radius',
-			[
-				'label' 		=> __( 'Border Radius', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Border Radius', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-buttons li a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' 			=> 'buttons_box_shadow',
-				'selector' 		=> '{{WRAPPER}} .oew-buttons li a',
-			]
+			array(
+				'name'     => 'buttons_box_shadow',
+				'selector' => '{{WRAPPER}} .oew-buttons li a',
+			)
 		);
 
 		$this->add_responsive_control(
 			'buttons_text_padding',
-			[
-				'label' 		=> __( 'Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-buttons li a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-				'separator' 	=> 'before',
-			]
+				),
+				'separator'  => 'before',
+			)
 		);
 
 		$this->add_responsive_control(
 			'buttons_margin',
-			[
-				'label' 		=> __( 'Margin', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Margin', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-buttons li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .oew-buttons li:first-child' => 'margin-left: {{LEFT}}{{UNIT}} !important;',
 					'.rtl {{WRAPPER}} .oew-buttons li:first-child' => 'margin-right: {{RIGHT}}{{UNIT}} !important;',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	protected function render() {
@@ -565,14 +568,18 @@ class Buttons extends Widget_Base {
 			<?php
 			foreach ( $settings['buttons'] as $index => $item ) {
 
-				$inner 	= $this->get_repeater_setting_key( 'inner', 'buttons', $index );
-				$link 	= $this->get_repeater_setting_key( 'link', 'buttons', $index );
-				$icon 	= $this->get_repeater_setting_key( 'icon', 'buttons', $index );
+				$inner = $this->get_repeater_setting_key( 'inner', 'buttons', $index );
+				$link  = $this->get_repeater_setting_key( 'link', 'buttons', $index );
+				$icon  = $this->get_repeater_setting_key( 'icon', 'buttons', $index );
 
-				$this->add_render_attribute( $inner, 'class', [
-					'oew-button-inner',
-					'elementor-repeater-item-' . $item['_id']
-				] );
+				$this->add_render_attribute(
+					$inner,
+					'class',
+					array(
+						'oew-button-inner',
+						'elementor-repeater-item-' . $item['_id'],
+					)
+				);
 
 				if ( ! empty( $item['link']['url'] ) ) {
 
@@ -600,40 +607,50 @@ class Buttons extends Widget_Base {
 				}
 
 				if ( ! empty( $item['icon'] ) ) {
-					$this->add_render_attribute( $icon, 'class', [
-						'oew-button-icon',
-						'elementor-align-icon-' . $item['icon_align'],
-					] );
-				} ?>
+					$this->add_render_attribute(
+						$icon,
+						'class',
+						array(
+							'oew-button-icon',
+							'elementor-align-icon-' . $item['icon_align'],
+						)
+					);
+				}
+				?>
 
 				<li <?php echo $this->get_render_attribute_string( $inner ); ?>>
 					<a <?php echo $this->get_render_attribute_string( $link ); ?>>
 						<?php
-						if ( ! empty( $item['icon'] ) && 'left' == $item['icon_align'] ) { ?>
+						if ( ! empty( $item['icon'] ) && 'left' == $item['icon_align'] ) {
+							?>
 							<span <?php echo $this->get_render_attribute_string( $icon ); ?>>
-								<?php \Elementor\Icons_Manager::render_icon( $item['icon'], [ 'aria-hidden' => 'true' ] ); ?>
+								<?php \Elementor\Icons_Manager::render_icon( $item['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 							</span>
-						<?php
-						} ?>
+							<?php
+						}
+						?>
 
 						<span><?php echo esc_attr( $item['text'] ); ?></span>
 
 						<?php
-						if ( ! empty( $item['icon'] ) && 'right' == $item['icon_align'] ) { ?>
+						if ( ! empty( $item['icon'] ) && 'right' == $item['icon_align'] ) {
+							?>
 							<span <?php echo $this->get_render_attribute_string( $icon ); ?>>
-								<?php \Elementor\Icons_Manager::render_icon( $item['icon'], [ 'aria-hidden' => 'true' ] ); ?>
+								<?php \Elementor\Icons_Manager::render_icon( $item['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 							</span>
-						<?php
-						} ?>
+							<?php
+						}
+						?>
 					</a>
 				</li>
 			<?php } ?>
 		</ul>
 
-	<?php
+		<?php
 	}
 
-	protected function _content_template() { ?>
+	protected function content_template() {
+		?>
 		<#
 		if ( settings.buttons ) { #>
 
@@ -698,7 +715,6 @@ class Buttons extends Widget_Base {
 
 		<# } #>
 
-	<?php
+		<?php
 	}
-
 }

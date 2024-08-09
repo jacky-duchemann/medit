@@ -5,10 +5,12 @@ namespace owpElementor\Modules\Pricing\Widgets;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
-use Elementor\Scheme_Typography;
+use Elementor\Icons_Manager;
 use Elementor\Widget_Base;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class Pricing extends Widget_Base {
 
@@ -21,438 +23,457 @@ class Pricing extends Widget_Base {
 	}
 
 	public function get_icon() {
-		// Upload "eicons.ttf" font via this site: http://bluejamesbond.github.io/CharacterMap/
 		return 'oew-icon eicon-price-table';
 	}
 
 	public function get_categories() {
-		return [ 'oceanwp-elements' ];
+		return array( 'oceanwp-elements' );
+	}
+
+	public function get_keywords() {
+		return array(
+			'price',
+			'table',
+			'price table',
+			'pricing table',
+			'owp',
+		);
 	}
 
 	public function get_style_depends() {
-		return [ 'oew-pricing' ];
+		return array( 'oew-pricing' );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_pricing',
-			[
-				'label' 		=> __( 'Price Table', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Price Table', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$this->add_control(
 			'featured',
-			[
-				'label' 		=> __( 'Featured', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SELECT,
-				'default' 		=> 'no',
-				'options' 		=> [
-					'no' 		=> __( 'No', 'ocean-elementor-widgets' ),
-					'yes' 		=> __( 'Yes', 'ocean-elementor-widgets' ),
-				],
-			]
+			array(
+				'label'   => __( 'Featured', 'ocean-elementor-widgets' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'no',
+				'options' => array(
+					'no'  => __( 'No', 'ocean-elementor-widgets' ),
+					'yes' => __( 'Yes', 'ocean-elementor-widgets' ),
+				),
+			)
 		);
 
 		$this->add_control(
 			'plan',
-			[
-				'label' 		=> __( 'Plan', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'default' 		=> __( 'Standard', 'ocean-elementor-widgets' ),
-				'label_block' 	=> true,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Plan', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Standard', 'ocean-elementor-widgets' ),
+				'label_block' => true,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$this->add_control(
 			'cost',
-			[
-				'label' 		=> __( 'Cost', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'default' 		=> '$29',
-				'label_block' 	=> true,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Cost', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '$29',
+				'label_block' => true,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$this->add_control(
 			'per',
-			[
-				'label' 		=> __( 'Per', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'label_block' 	=> true,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Per', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$this->add_control(
 			'content',
-			[
-				'label' 		=> __( 'Features', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXTAREA,
-				'default' 		=> '<ul>
+			array(
+				'label'   => __( 'Features', 'ocean-elementor-widgets' ),
+				'type'    => Controls_Manager::TEXTAREA,
+				'default' => '<ul>
 							<li>1 Website</li>
 							<li class="oew-even">20GB Disk Space</li>
 							<li>SSD Included FREE</li>
 							<li class="oew-even">E-Commerce Ready</li>
 							<li>Unlimited Bandwidth</li>
 						</ul>',
-				'dynamic' 		=> [ 'active' => true ],
-			]
+				'dynamic' => array( 'active' => true ),
+			)
 		);
 
 		$this->add_control(
 			'button_url',
-			[
-				'label' 		=> __( 'Button URL', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::URL,
-				'placeholder' 	=> 'http://your-link.com',
-				'default' 		=> [
-					'url'		=> '#',
-				],
-			]
+			array(
+				'label'       => __( 'Button URL', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::URL,
+				'placeholder' => 'http://your-link.com',
+				'default'     => array(
+					'url' => '#',
+				),
+			)
 		);
 
 		$this->add_control(
 			'button_text',
-			[
-				'label' 		=> __( 'Button Text', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'default' 		=> __( 'Subscribe Now', 'ocean-elementor-widgets' ),
-				'label_block' 	=> true,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Button Text', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Subscribe Now', 'ocean-elementor-widgets' ),
+				'label_block' => true,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
+
+		$this->add_control(
+			'button_icon',
+			array(
+				'label'       => __( 'Button Icon', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::ICONS,
+				'label_block' => true,
+				'default'     => array(
+					'value'   => '',
+					'library' => 'fa-solid',
+				),
+			)
+		);
+
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_plan',
-			[
-				'label' 		=> __( 'Plan', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Plan', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'plan_background',
-			[
-				'label' 		=> __( 'Background', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-header' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'plan_color',
-			[
-				'label' 		=> __( 'Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-header' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'plan_padding',
-			[
-				'label' 		=> __( 'Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-pricing-header' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name' 			=> 'plan_border',
-				'label' 		=> __( 'Border', 'ocean-elementor-widgets' ),
-				'placeholder' 	=> '1px',
-				'default' 		=> '1px',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-header',
-			]
+			array(
+				'name'        => 'plan_border',
+				'label'       => __( 'Border', 'ocean-elementor-widgets' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .oew-pricing-header',
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'plan_typo',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-header',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_1,
-			]
+			array(
+				'name'     => 'plan_typo',
+				'selector' => '{{WRAPPER}} .oew-pricing-header',
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_cost',
-			[
-				'label' 		=> __( 'Cost', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Cost', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'cost_background',
-			[
-				'label' 		=> __( 'Background', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-cost' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'cost_color',
-			[
-				'label' 		=> __( 'Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-cost .oew-pricing-amount' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'cost_padding',
-			[
-				'label' 		=> __( 'Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-pricing-cost' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name' 			=> 'cost_border',
-				'label' 		=> __( 'Border', 'ocean-elementor-widgets' ),
-				'placeholder' 	=> '1px',
-				'default' 		=> '1px',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-cost',
-			]
+			array(
+				'name'        => 'cost_border',
+				'label'       => __( 'Border', 'ocean-elementor-widgets' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .oew-pricing-cost',
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'cost_typo',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-cost .oew-pricing-amount',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_1,
-			]
+			array(
+				'name'     => 'cost_typo',
+				'selector' => '{{WRAPPER}} .oew-pricing-cost .oew-pricing-amount',
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_per',
-			[
-				'label' 		=> __( 'Per', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Per', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'per_color',
-			[
-				'label' 		=> __( 'Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-per' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'per_typo',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-per',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_1,
-			]
+			array(
+				'name'     => 'per_typo',
+				'selector' => '{{WRAPPER}} .oew-pricing-per',
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_features',
-			[
-				'label' 		=> __( 'Features', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Features', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'features_bg',
-			[
-				'label' 		=> __( 'Background', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-content' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'features_color',
-			[
-				'label' 		=> __( 'Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-content' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'features_padding',
-			[
-				'label' 		=> __( 'Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-pricing-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name' 			=> 'features_border',
-				'label' 		=> __( 'Border', 'ocean-elementor-widgets' ),
-				'placeholder' 	=> '1px',
-				'default' 		=> '1px',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-content',
-			]
+			array(
+				'name'        => 'features_border',
+				'label'       => __( 'Border', 'ocean-elementor-widgets' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .oew-pricing-content',
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'features_typo',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-content',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_1,
-			]
+			array(
+				'name'     => 'features_typo',
+				'selector' => '{{WRAPPER}} .oew-pricing-content',
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_button',
-			[
-				'label' 		=> __( 'Button', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Button', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'wrap_button_bg',
-			[
-				'label' 		=> __( 'Wrap Background', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Wrap Background', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-button' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'wrap_button_padding',
-			[
-				'label' 		=> __( 'Wrap Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Wrap Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-pricing-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
-			[
-				'name' 			=> 'wrap_button_border',
-				'label' 		=> __( 'Wrap Border', 'ocean-elementor-widgets' ),
-				'placeholder' 	=> '1px',
-				'default' 		=> '1px',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-button',
-			]
+			array(
+				'name'        => 'wrap_button_border',
+				'label'       => __( 'Wrap Border', 'ocean-elementor-widgets' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'    => '{{WRAPPER}} .oew-pricing-button',
+			)
 		);
 
 		$this->start_controls_tabs( 'tabs_button_style' );
 
 		$this->start_controls_tab(
 			'tab_button_normal',
-			[
+			array(
 				'label' => __( 'Normal', 'ocean-elementor-widgets' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'button_bg',
-			[
-				'label' 		=> __( 'Background', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-button .button' => 'background-color: {{VALUE}};',
-				],
-				'separator' 	=> 'before',
-			]
+				),
+				'separator' => 'before',
+			)
 		);
 
 		$this->add_control(
 			'button_color',
-			[
-				'label' 		=> __( 'Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-button .button' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
 			'tab_button_hover',
-			[
+			array(
 				'label' => __( 'Hover', 'ocean-elementor-widgets' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'button_hover_bg',
-			[
-				'label' 		=> __( 'Background', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-button .button:hover' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'button_hover_color',
-			[
-				'label' 		=> __( 'Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-pricing-button .button:hover' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_tab();
@@ -461,35 +482,91 @@ class Pricing extends Widget_Base {
 
 		$this->add_control(
 			'button_padding',
-			[
-				'label' 		=> __( 'Padding', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', 'em', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Padding', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-pricing-button .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'button_border_radius',
-			[
-				'label' 		=> __( 'Border Radius', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::DIMENSIONS,
-				'size_units' 	=> [ 'px', '%' ],
-				'selectors' 	=> [
+			array(
+				'label'      => __( 'Border Radius', 'ocean-elementor-widgets' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .oew-pricing-button .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'button_typo',
-				'selector' 		=> '{{WRAPPER}} .oew-pricing-button .button',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_1,
-			]
+			array(
+				'name'     => 'button_typo',
+				'selector' => '{{WRAPPER}} .oew-pricing-button .button',
+			)
+		);
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'section_button_icon_style',
+			array(
+				'label' => __( 'Button Icon', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'button_icon_color',
+			array(
+				'label'     => __( 'Icon Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .oew-pricing .elementor-button-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .oew-pricing .elementor-button-icon svg' => 'fill: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			array(
+				'label'     => __( 'Spacing', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .oew-pricing .elementor-button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			array(
+				'label'     => __( 'Icon Size', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 6,
+						'max' => 300,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .oew-pricing .elementor-button-icon' => 'font-size: {{SIZE}}{{UNIT}};line-height: 20px;',
+				),
+			)
 		);
 
 		$this->end_controls_section();
@@ -497,15 +574,15 @@ class Pricing extends Widget_Base {
 	}
 
 	protected function render() {
-		$settings 	= $this->get_settings_for_display();
+		$settings = $this->get_settings_for_display();
 
 		// Vars
-		$plan 		= $settings['plan'];
-		$cost 		= $settings['cost'];
-		$per 		= $settings['per'];
-		$content 	= $settings['content'];
-		$btn_url 	= $settings['button_url']['url'];
-		$btn_text 	= $settings['button_text'];
+		$plan     = $settings['plan'];
+		$cost     = $settings['cost'];
+		$per      = $settings['per'];
+		$content  = $settings['content'];
+		$btn_url  = $settings['button_url']['url'];
+		$btn_text = $settings['button_text'];
 
 		// Wrapper classes
 		$featured_class = '';
@@ -518,13 +595,26 @@ class Pricing extends Widget_Base {
 			$btn_target = 'blank';
 		} else {
 			$btn_target = 'self';
-		} ?>
+		}
+
+		if ( ! empty( $settings['button_icon'] ) ) {
+			$this->add_render_attribute(
+				'icon',
+				'class',
+				array(
+					'elementor-button-icon',
+				)
+			);
+		}
+
+		?>
 
 		<div class="oew-pricing clr<?php echo esc_attr( $featured_class ); ?>">
 
 			<?php
 			// Display plan
-			if ( $plan ) { ?>
+			if ( $plan ) {
+				?>
 
 				<div class="oew-pricing-header clr"><?php echo do_shortcode( $plan ); ?></div>
 
@@ -532,7 +622,8 @@ class Pricing extends Widget_Base {
 
 			<?php
 			// Display cost
-			if ( $cost ) { ?>
+			if ( $cost ) {
+				?>
 
 				<div class="oew-pricing-cost clr">
 
@@ -548,19 +639,37 @@ class Pricing extends Widget_Base {
 
 			<?php
 			// Display content
-			if ( $content ) { ?>
+			if ( $content ) {
+				?>
 
 				<div class="oew-pricing-content clr"><?php echo do_shortcode( $content ); ?></div>
 
 			<?php } ?>
-			
+
 			<?php
 			// Display button
-			if ( $btn_url ) { ?>
+			if ( $btn_url ) {
+				?>
 
 				<div class="oew-pricing-button clr">
 
-					<a href="<?php echo esc_url( $btn_url ); ?>" title="<?php echo esc_attr( $btn_text ); ?>" class="button" target="_<?php echo esc_attr( $btn_target ); ?>"><?php echo esc_attr( $btn_text ); ?></a>
+
+
+				<a href="<?php echo esc_url( $btn_url ); ?>" title="<?php echo esc_attr( $btn_text ); ?>" class="button" target="_<?php echo esc_attr( $btn_target ); ?>">
+					<?php
+					if ( ! empty( $settings['button_icon'] ) && ! empty( $settings['button_icon']['value'] ) ) {
+						$icon_data = $settings['button_icon'];
+						if ( isset( $icon_data['library'], $icon_data['value'] ) && ! empty( $icon_data['library'] ) && ! empty( $icon_data['value'] ) ) {
+							?>
+							<span <?php echo $this->get_render_attribute_string( 'icon' ); ?>>
+								<?php Icons_Manager::render_icon( $settings['button_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+							</span>
+							<?php
+						}
+					}
+					?>
+					<?php echo esc_attr( $btn_text ); ?>
+				</a>
 
 				</div>
 
@@ -568,59 +677,7 @@ class Pricing extends Widget_Base {
 
 		</div><!-- .oew-pricing -->
 
-	<?php
-	}
-
-	protected function _content_template() { ?>
-		<#
-			var featured_class = '',
-				btn_target = '';
-
-			if ( 'yes' === settings.featured ) {
-				featured_class = ' featured';
-			}
-		#>
-
-		<div class="oew-pricing clr{{ featured_class }}">
-
-			<# if ( settings.plan ) { #>
-
-				<div class="oew-pricing-header clr">{{{ settings.plan }}}</div>
-
-			<# } #>
-
-			<# if ( settings.cost ) { #>
-
-				<div class="oew-pricing-cost clr">
-
-					<div class="oew-pricing-amount">{{{ settings.cost }}}</div>
-
-					<# if ( settings.per ) { #>
-						<div class="oew-pricing-per">{{{ settings.per }}}</div>
-					<# } #>
-
-				</div>
-
-			<# } #>
-
-			<# if ( settings.content ) { #>
-
-				<div class="oew-pricing-content clr">{{{ settings.content }}}</div>
-
-			<# } #>
-			
-			<# if ( settings.button_url.url ) { #>
-
-				<div class="oew-pricing-button clr">
-
-					<a href="{{ settings.button_url.url }}" title="{{ settings.button_text }}" class="button">{{{ settings.button_text }}}</a>
-
-				</div>
-
-			<# } #>
-
-		</div><!-- .oew-pricing -->
-	<?php
+		<?php
 	}
 
 }

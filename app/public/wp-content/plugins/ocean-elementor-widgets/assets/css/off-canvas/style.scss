@@ -64,7 +64,6 @@ Off Canvas
 
 .oew-off-canvas-wrap {
     visibility: hidden;
-    @include transition( all 0.25s ease-in-out );
 
     &,
     .oew-off-canvas-overlay {
@@ -93,7 +92,6 @@ Off Canvas
         overflow: auto;
         z-index: 10000;
         @include box-shadow( 0 0 12px 0 rgba(0,0,0,.1) );
-        @include transition( transform 0.3s ease-in-out );
         @include transform( translateX(-100%) );
     }
 }
@@ -102,6 +100,7 @@ Off Canvas
     visibility: visible;
 
     .oew-off-canvas-sidebar {
+        @include transition( transform 0.3s ease-in-out );
         @include transform( translateX(0) );
     }
 }

@@ -1,0 +1,12 @@
+<wpml-config>
+  <elementor-widgets>
+    <widget name="oew-flash-portfolio">
+        <field type="Header Text 1" editor_type="LINE">header_text_1</field>
+        <field type="Header Text 2" editor_type="LINE">header_text_2</field>
+        <fields-in-item items_of="portfolio_list">
+            <field type="Item Title" editor_type="LINE">item_title</field>
+            <field type="Item Link" editor_type="LINE">item_link</field>
+        </fields-in-item>
+    </widget>
+  </elementor-widgets>
+</wpml-config>

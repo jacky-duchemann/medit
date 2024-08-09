@@ -38,3 +38,6 @@ function contact_btn( $items, $args ) {
 }
 
 add_filter( 'wp_nav_menu_items', 'contact_btn', 10, 2 );
+
+// intégration de Jquery 
+

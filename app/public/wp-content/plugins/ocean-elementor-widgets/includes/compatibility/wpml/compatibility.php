@@ -20,7 +20,7 @@ class WPML {
 
 	/**
 	 * Returns the class instance
-	 * 
+	 *
 	 * @since 1.0.16
 	 *
 	 * @return Object
@@ -661,7 +661,7 @@ class WPML {
 					'editor_type' => 'VISUAL'
 				),
 				array(
-					'field'       => 'prep_text',
+					'field'       => 'preportfolio-text',
 					'type'        => __( 'Recipe Prep Text', 'ocean-elementor-widgets' ),
 					'editor_type' => 'LINE'
 				),
@@ -913,7 +913,7 @@ class WPML {
 	 * @return Object
 	 */
 	public static function get_instance() {
-		
+
 		if ( null == self::$instance )
 			self::$instance = new self;
 

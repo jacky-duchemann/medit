@@ -4,10 +4,11 @@ namespace owpElementor\Modules\Alert\Widgets;
 // Elementor Classes
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
 use Elementor\Widget_Base;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class Alert extends Widget_Base {
 
@@ -20,202 +21,262 @@ class Alert extends Widget_Base {
 	}
 
 	public function get_icon() {
-		// Upload "eicons.ttf" font via this site: http://bluejamesbond.github.io/CharacterMap/
 		return 'oew-icon eicon-alert';
 	}
 
 	public function get_categories() {
-		return [ 'oceanwp-elements' ];
+		return array( 'oceanwp-elements' );
+	}
+
+	public function get_keywords() {
+		return array(
+			'alert',
+			'notice',
+			'owp',
+		);
 	}
 
 	public function get_script_depends() {
-		return [ 'oew-alert' ];
+		return array( 'oew-alert' );
 	}
 
 	public function get_style_depends() {
-		return [ 'oew-alert' ];
+		return array( 'oew-alert' );
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_alert',
-			[
-				'label' 		=> __( 'Alert', 'ocean-elementor-widgets' ),
-			]
+			array(
+				'label' => __( 'Alert', 'ocean-elementor-widgets' ),
+			)
 		);
 
 		$this->add_control(
 			'type',
-			[
-				'label' 		=> __( 'Type', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SELECT,
-				'default' 		=> 'notice',
-				'options' 		=> [
-					'notice' 	=> __( 'Notice', 'ocean-elementor-widgets' ),
-					'error' 	=> __( 'Error', 'ocean-elementor-widgets' ),
-					'warning' 	=> __( 'Warning', 'ocean-elementor-widgets' ),
-					'success' 	=> __( 'Success', 'ocean-elementor-widgets' ),
-					'info' 		=> __( 'Info', 'ocean-elementor-widgets' ),
-				],
-			]
+			array(
+				'label'   => __( 'Type', 'ocean-elementor-widgets' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'notice',
+				'options' => array(
+					'notice'  => __( 'Notice', 'ocean-elementor-widgets' ),
+					'error'   => __( 'Error', 'ocean-elementor-widgets' ),
+					'warning' => __( 'Warning', 'ocean-elementor-widgets' ),
+					'success' => __( 'Success', 'ocean-elementor-widgets' ),
+					'info'    => __( 'Info', 'ocean-elementor-widgets' ),
+				),
+			)
 		);
 
 		$this->add_control(
 			'title',
-			[
-				'label' 		=> __( 'Title & Description', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXT,
-				'placeholder' 	=> __( 'Your Title', 'ocean-elementor-widgets' ),
-				'default' 		=> __( 'This is Alert Message', 'ocean-elementor-widgets' ),
-				'label_block' 	=> true,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Title & Description', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => __( 'Your Title', 'ocean-elementor-widgets' ),
+				'default'     => __( 'This is Alert Message', 'ocean-elementor-widgets' ),
+				'label_block' => true,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$this->add_control(
 			'content',
-			[
-				'label' 		=> __( 'Content', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::TEXTAREA,
-				'placeholder' 	=> __( 'Your Description', 'ocean-elementor-widgets' ),
-				'default' 		=> __( 'Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel.', 'ocean-elementor-widgets' ),
-				'separator' 	=> 'none',
-				'show_label' 	=> false,
-				'dynamic' 		=> [ 'active' => true ],
-			]
+			array(
+				'label'       => __( 'Content', 'ocean-elementor-widgets' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'placeholder' => __( 'Your Description', 'ocean-elementor-widgets' ),
+				'default'     => __( 'Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel.', 'ocean-elementor-widgets' ),
+				'separator'   => 'none',
+				'show_label'  => false,
+				'dynamic'     => array( 'active' => true ),
+			)
 		);
 
 		$this->add_control(
 			'show_dismiss',
-			[
-				'label' 		=> __( 'Dismiss Button', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SELECT,
-				'default' 		=> 'show',
-				'options' 		=> [
-					'show' 		=> __( 'Show', 'ocean-elementor-widgets' ),
-					'hide' 		=> __( 'Hide', 'ocean-elementor-widgets' ),
-				],
-			]
+			array(
+				'label'   => __( 'Dismiss Button', 'ocean-elementor-widgets' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'show',
+				'options' => array(
+					'show' => __( 'Show', 'ocean-elementor-widgets' ),
+					'hide' => __( 'Hide', 'ocean-elementor-widgets' ),
+				),
+			)
 		);
 
 		$this->add_control(
 			'view',
-			[
-				'label' 		=> __( 'View', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::HIDDEN,
-				'default' 		=> 'traditional',
-			]
+			array(
+				'label'   => __( 'View', 'ocean-elementor-widgets' ),
+				'type'    => Controls_Manager::HIDDEN,
+				'default' => 'traditional',
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_type',
-			[
-				'label' 		=> __( 'Alert Type', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Alert Type', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'style',
-			[
-				'label' 		=> __( 'Style', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::SELECT,
-				'default' 		=> 'small',
-				'options' 		=> [
-					'small' 	=> __( 'Small', 'ocean-elementor-widgets' ),
-					'big' 		=> __( 'Big', 'ocean-elementor-widgets' ),
-					'minimal' 	=> __( 'Minimal', 'ocean-elementor-widgets' ),
-				],
-			]
+			array(
+				'label'   => __( 'Style', 'ocean-elementor-widgets' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'small',
+				'options' => array(
+					'small'   => __( 'Small', 'ocean-elementor-widgets' ),
+					'big'     => __( 'Big', 'ocean-elementor-widgets' ),
+					'minimal' => __( 'Minimal', 'ocean-elementor-widgets' ),
+				),
+			)
 		);
 
 		$this->add_control(
 			'background',
-			[
-				'label' 		=> __( 'Background Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Background Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-alert' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'border_color',
-			[
-				'label'		 	=> __( 'Border Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Border Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-alert' => 'border-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_title',
-			[
-				'label' 		=> __( 'Title', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Title', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'title_color',
-			[
-				'label' 		=> __( 'Text Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Text Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-alert-heading' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'alert_title',
-				'selector' 		=> '{{WRAPPER}} .oew-alert-heading',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_1,
-			]
+			array(
+				'name'     => 'alert_title',
+				'selector' => '{{WRAPPER}} .oew-alert-heading',
+			)
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_description',
-			[
-				'label' 		=> __( 'Description', 'ocean-elementor-widgets' ),
-				'tab' 			=> Controls_Manager::TAB_STYLE,
-			]
+			array(
+				'label' => __( 'Description', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'description_color',
-			[
-				'label' 		=> __( 'Text Color', 'ocean-elementor-widgets' ),
-				'type' 			=> Controls_Manager::COLOR,
-				'selectors' 	=> [
+			array(
+				'label'     => __( 'Text Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .oew-alert-content' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' 			=> 'alert_content',
-				'selector' 		=> '{{WRAPPER}} .oew-alert-content',
-				'scheme' 		=> Scheme_Typography::TYPOGRAPHY_3,
-			]
+			array(
+				'name'     => 'alert_content',
+				'selector' => '{{WRAPPER}} .oew-alert-content',
+			)
 		);
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_icon',
+			array(
+				'label' => __( 'Icon', 'ocean-elementor-widgets' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'icon_color',
+			array(
+				'label'     => __( 'Color', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .oew-alert-icon' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_spacing',
+			array(
+				'label'     => __( 'Spacing', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => -60,
+						'max' => 60,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .oew-alert-icon i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .oew-alert-icon i' => 'margin-left: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			array(
+				'label'     => __( 'Icon Size', 'ocean-elementor-widgets' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 6,
+						'max' => 300,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .oew-alert-icon i' => 'font-size: {{SIZE}}{{UNIT}};line-height: 20px;',
+				),
+			)
+		);
+
+		$this->end_controls_section();
 	}
 
 	protected function render() {
@@ -240,21 +301,21 @@ class Alert extends Widget_Base {
 			} else {
 				$alert_icon = 'icon-bell';
 			}
-		} else if ( 'error' == $settings['type'] ) {
+		} elseif ( 'error' == $settings['type'] ) {
 			if ( 'minimal' == $settings['style'] ) {
 				$alert_icon = 'fa fa-times';
 			} else {
 				$alert_icon = 'icon-close';
 			}
-		} else if ( 'warning' == $settings['type'] ) {
+		} elseif ( 'warning' == $settings['type'] ) {
 			$alert_icon = 'fa fa-exclamation';
-		} else if ( 'success' == $settings['type'] ) {
+		} elseif ( 'success' == $settings['type'] ) {
 			if ( 'minimal' == $settings['style'] ) {
 				$alert_icon = 'fa fa-check';
 			} else {
 				$alert_icon = 'icon-check';
 			}
-		} else if ( 'info' == $settings['type'] ) {
+		} elseif ( 'info' == $settings['type'] ) {
 			$alert_icon = 'fa fa-info';
 		} ?>
 
@@ -263,10 +324,11 @@ class Alert extends Widget_Base {
 			<div class="oew-alert-content-wrap clr">
 
 				<div class="oew-alert-icon"><i class="<?php echo esc_attr( $alert_icon ); ?>"></i></div>
-				
+
 				<?php
 				// Display heading if defined
-				if ( ! empty( $settings['title'] ) && 'small' != $settings['style'] ) { ?>
+				if ( ! empty( $settings['title'] ) && 'small' != $settings['style'] ) {
+					?>
 
 					<h2 class="oew-alert-heading">
 						<?php echo esc_attr( $settings['title'] ); ?>
@@ -276,7 +338,8 @@ class Alert extends Widget_Base {
 
 				<?php
 				// Display content if defined
-				if ( ! empty( $settings['content'] ) ) { ?>
+				if ( ! empty( $settings['content'] ) ) {
+					?>
 
 					<div class="oew-alert-content clr">
 						<?php echo do_shortcode( $settings['content'] ); ?>
@@ -286,7 +349,8 @@ class Alert extends Widget_Base {
 
 				<?php
 				// Display close button if defined
-				if ( ! empty( $settings['show_dismiss'] ) && 'show' === $settings['show_dismiss'] ) { ?>
+				if ( ! empty( $settings['show_dismiss'] ) && 'show' === $settings['show_dismiss'] ) {
+					?>
 
 					<div class="oew-alert-close-btn"><i class="icon-close"></i></div>
 
@@ -296,10 +360,11 @@ class Alert extends Widget_Base {
 
 		</div><!-- .oew-alert -->
 
-	<?php
+		<?php
 	}
 
-	protected function _content_template() { ?>
+	protected function content_template() {
+		?>
 		<#
 			var wrap_classes = 'oew-alert clr',
 				alert_icon = '';
@@ -357,6 +422,6 @@ class Alert extends Widget_Base {
 			</div>
 
 		</div>
-	<?php
+		<?php
 	}
 }

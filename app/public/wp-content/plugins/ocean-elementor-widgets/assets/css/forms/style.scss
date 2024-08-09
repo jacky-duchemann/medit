@@ -63,3 +63,36 @@ Forms
     padding: 12px;
     border: 1px solid #eaeaea;
 }
+
+.oew-error {
+  background-color: #222;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.oew-error {
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 11px;
+  line-height: 1.6;
+  background-color: #e2401c;
+}
+.oew-error a {
+  display: block;
+  color: #fff;
+}
+ .oew-success {
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 11px;
+  line-height: 1.6;
+  background-color: #3fc387;
+}
+.oew-error a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.oew-error p {
+  margin: 0;
+}
