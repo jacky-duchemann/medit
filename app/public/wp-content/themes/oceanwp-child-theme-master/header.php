@@ -95,23 +95,6 @@ $('.popup-close').click(function(){
 <!-- Ajout d'un bouton contact au menu -->
 
 <?php
-
-/**
- * Shortcode pour ajouter un bouton
- * enlever la declaration de la fonction - elle est déclaré dans functions.php
- */ 
-
- /*if (function_exists('contact_btn')) {
- function contact_btn() {
-
-	// Code du bouton
-	$string .= '<a href="/contact" class="contact-btn">Nous contacter</a>';
-
-	// On retourne le code
-	return $string;
-
-} */
-// On publie le shortcode
+/*Shortcode pour ajouter le bouton*/
 add_shortcode('contact', 'contact_btn');
- /*}*/
 ?>
